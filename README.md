@@ -12,4 +12,4 @@ Instructions:
 * Run **`gen.py`**.
 * Your scrollystory will be outputted in the html folder.
 
-For a cool, fleshed-out example, [check this out](https://www.michaelsokoletsky.com/posts/2022/02/blog-post-1/)!
+For a fleshed-out example, [check this out](https://www.michaelsokoletsky.com/posts/2022/02/blog-post-1/)!
