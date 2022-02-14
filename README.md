@@ -9,7 +9,7 @@ Instructions:
 * Set the name, title, and description of your scrollystory.
 * Change the text of each step, and add/remove steps as you wish.
 * For each step, also write the name of the associated image.
-* Run **`gen.py`**.
+* Run **`gen.py`** (requires Python 3 and the modules in requirements.txt).
 * Your scrollystory will be outputted in the html folder.
 
 For a fleshed out example of a scrollystory about my neuroscience PhD research, [check this out](https://www.michaelsokoletsky.com/posts/2022/02/blog-post-1/)!
