@@ -8,7 +8,7 @@ Instructions:
 * Open **`opts.json`**.
 * Set the name, title, and description of your scrollystory.
 * Change the text of each step, and add/remove steps as you wish.
-* For each step, write the name of the association image.
+* For each step, also write the name of the associated image.
 * Run **`gen.py`**.
 * Your scrollystory will be outputted in the html folder.
 
