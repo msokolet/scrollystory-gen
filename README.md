@@ -1,6 +1,6 @@
 ## Scrollystory generator ##
 
-This is a wrapper for the [scrollama](https://github.com/russellgoldenberg/scrollama) library, the purpose of which is to create [scrollystories](https://russellgoldenberg.github.io/scrollama/sticky-side/) with minimal effort. No knowledge of JS/CSS needed!
+This is a wrapper for the [scrollama](https://github.com/russellgoldenberg/scrollama) library, the purpose of which is to create scrollystories with minimal effort. No knowledge of JS/CSS needed!
 
 Requires Python 3 and the modules in requirements.txt.
  
