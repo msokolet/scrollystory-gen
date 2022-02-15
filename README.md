@@ -9,8 +9,8 @@ Instructions:
 * Upload your images of choice to the images folder.
 * Open **`opts.json`**.
 * Set the name, title, and description of your scrollystory.
-* Change the text of each step, and add/remove steps as you wish.
-* For each step, also write the name of the associated image.
+* Set the text of each step, and add/remove steps as you wish.
+* For each step, also set the name of the associated image.
 * Run **`gen.py`**.
 * Your scrollystory will be outputted in the html folder.
 
