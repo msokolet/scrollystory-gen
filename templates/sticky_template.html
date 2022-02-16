@@ -10,6 +10,12 @@
 	<title>{{page_title}}</title>
 	<meta name="description" content='{{page_desc}}' />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<! –– preload images so they immediatelly load in the scrollystory ––>
+	{% for step in steps %}
+		<link rel="preload" as="image" href="../images/{{step['image']}}" type="img/jpg" crossorigin="anonymous" />
+	{% endfor %}
+	
 	<style>
 
 		* { margin:0px; }
