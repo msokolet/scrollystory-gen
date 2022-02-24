@@ -1,0 +1,28 @@
+{
+  "page_name": "perception-is-not-a-dirty-word",
+  "page_title": "\"Perception\" is not a dirty word",
+  "page_desc": "Blog post 1",
+  "template": "sticky_template",
+  "steps": [
+      {"text": "When some people hear I work on perception, they immediately think about consciousness, feeling, qualia, or other such thorny philosophical concepts.", "image": "1.jpg"},
+      {"text": "But they are not the same. I'll explain..", "image": "2.jpg"},    
+      {"text": "Say you happen to perceive a little fly on your arm.. ", "image": "3.jpg"},
+      {"text": "You can swat at it.. or watch it rub its little hands.. or ignore it altogether. Thus, your internal representation of the fly creates an affordance, meaning you can respond to it in a flexible way.", "image": "4.jpg"},
+      {"text": "This is how I define perception in my work: an internal representation of a stimulus that creates an affordance.", "image": "5.jpg"},    
+      {"text": "I will not try to define consciousness, but I will say it is a subjective concept that can only be assessed by asking about it: \"Do you have consciousness?\", \"Are you conscious of the fly?\", etc.", "image": "6.jpg"},    
+      {"text": "In humans, consciousness and perception nearly always come together. You will say that you are conscious of a stimulus if and only if it creates an affordance.", "image": "7.jpg"},    
+      {"text": "In mice, sadly, we don't know whether there is consciousness similar to that of humans. We can't ask them!", "image": "8.jpg"},    
+      {"text": "But we can quantify their behavior in response to a stimulus, and check if it is consistent with the stimulus creating an affordance, i.e. the mice perceiving the stimulus.", "image": "9.jpg"},    
+      {"text": "For example, one can train a mouse to report the vibration of a single whisker by licking a water port. ", "image": "10.jpg"},    
+      {"text": "The affordance consists of the fact that the licking is flexible: sometimes it happens earlier, sometimes later, sometimes with more force, etc.", "image": "11.jpg"},    
+      {"text": "But wait, why would we want to study mice?", "image": "12.jpg"},    
+      {"text": "The reason is that in mice, unlike in humans, there are many tools available to identify and probe the neural circuits that underlie perception.", "image": "13.jpg"},    
+      {"text": "Even so, these neural circuits remain poorly understood.", "image": "14.jpg"},    
+      {"text": "I think a crucial reason for this is that we typically train mice to report stimuli in a specific way, so we can’t distinguish perception-related activity from report-related activity.", "image": "15.jpg"},    
+      {"text": "In my PhD project, I made a first crack at solving this problem by training mice to either lick or not lick after a whisker vibration, which allowed me to isolate perception-related activity.", "image": "16.jpg"},    
+      {"text": "But many unknowns remain: How does this activity arise? What is its causal role? Is it the same across different sensory modalities? And others.", "image": "17.jpg"},    
+      {"text": "No matter the next step, the key is to recognize that \"perception\" is not a dirty word. It's an incredibly important scientific problem that we can tackle.", "image": "18.jpg"}
+
+  ]  
+}
+

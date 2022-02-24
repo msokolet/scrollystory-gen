@@ -1,0 +1,399 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<! –– preload images so they immediately load in the scrollystory ––>
+	
+		<link rel="preload" as="image" href="../images/1.jpg" type="img/jpg" crossorigin="anonymous" />
+	
+		<link rel="preload" as="image" href="../images/2.jpg" type="img/jpg" crossorigin="anonymous" />
+	
+		<link rel="preload" as="image" href="../images/3.jpg" type="img/jpg" crossorigin="anonymous" />
+	
+		<link rel="preload" as="image" href="../images/4.jpg" type="img/jpg" crossorigin="anonymous" />
+	
+		<link rel="preload" as="image" href="../images/5.jpg" type="img/jpg" crossorigin="anonymous" />
+	
+		<link rel="preload" as="image" href="../images/6.jpg" type="img/jpg" crossorigin="anonymous" />
+	
+		<link rel="preload" as="image" href="../images/7.jpg" type="img/jpg" crossorigin="anonymous" />
+	
+		<link rel="preload" as="image" href="../images/8.jpg" type="img/jpg" crossorigin="anonymous" />
+	
+		<link rel="preload" as="image" href="../images/9.jpg" type="img/jpg" crossorigin="anonymous" />
+	
+		<link rel="preload" as="image" href="../images/10.jpg" type="img/jpg" crossorigin="anonymous" />
+	
+		<link rel="preload" as="image" href="../images/11.jpg" type="img/jpg" crossorigin="anonymous" />
+	
+		<link rel="preload" as="image" href="../images/12.jpg" type="img/jpg" crossorigin="anonymous" />
+	
+		<link rel="preload" as="image" href="../images/13.jpg" type="img/jpg" crossorigin="anonymous" />
+	
+		<link rel="preload" as="image" href="../images/14.jpg" type="img/jpg" crossorigin="anonymous" />
+	
+		<link rel="preload" as="image" href="../images/15.jpg" type="img/jpg" crossorigin="anonymous" />
+	
+		<link rel="preload" as="image" href="../images/16.jpg" type="img/jpg" crossorigin="anonymous" />
+	
+		<link rel="preload" as="image" href="../images/17.jpg" type="img/jpg" crossorigin="anonymous" />
+	
+		<link rel="preload" as="image" href="../images/18.jpg" type="img/jpg" crossorigin="anonymous" />
+	
+	
+	<! –– define metadata ––>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>"Perception" is not a dirty word</title>
+	<meta name="description" content='Blog post 1' />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	
+	<style>
+
+		* { margin:0px; }
+
+		/* setup scrolly element */
+		#scrolly {
+			position: relative;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			background-color: #ffffff;
+			padding: 1rem;
+		}
+
+		#scrolly>* {
+			-webkit-box-flex: 1;
+			-ms-flex: 1;
+			flex: 1;
+		}
+
+		/* setup article which contains steps - this is the text on the left */
+		article {
+			position: relative;
+			padding: 0 5rem;
+			max-width: 30rem;
+		}
+
+		/* setup figure - this is the image on the right */
+		figure {
+			position: -webkit-sticky;
+			position: sticky;
+			display: flex;
+			align-items: center;
+			margin: 0;
+			-webkit-transform: translate3d(0, 0, 0);
+			-moz-transform: translate3d(0, 0, 0);
+			transform: translate3d(0, 0, 0);
+			background-color: hsl(0, 0%, 100%);
+			z-index: 0;
+		}
+
+		/* fit image within the flexbox */
+		img {
+			height: auto;
+   			width: 95%;
+		}
+
+		/* setup steps */
+		.step {
+			margin: 0 auto 2rem auto;
+			background-color: #ffffff;
+			color: rgb(0, 0, 0)
+		}
+
+		.step:last-child {
+			margin-bottom: 0;
+		}
+
+		/* setup text inside step */
+		.step p {
+			text-align: center;
+			padding: 1rem;
+			font-size: 2vw;
+			font-family: Helvetica, sans-serif;
+		}
+	</style>
+</head>
+
+<body>
+	<main>
+
+		<section id="scrolly">
+
+			<! –– import step texts from json file in a loop ––>
+			<article>
+				
+				
+					
+				
+				<div class="step" data-step="1" style="opacity: 1">
+					<p>When some people hear I work on perception, they immediately think about consciousness, feeling, qualia, or other such thorny philosophical concepts.
+					</p>
+				</div>
+				
+				
+					
+				
+				<div class="step" data-step="2" style="opacity: 0">
+					<p>But they are not the same. I'll explain..
+					</p>
+				</div>
+				
+				
+					
+				
+				<div class="step" data-step="3" style="opacity: 0">
+					<p>Say you happen to perceive a little fly on your arm.. 
+					</p>
+				</div>
+				
+				
+					
+				
+				<div class="step" data-step="4" style="opacity: 0">
+					<p>You can swat at it.. or watch it rub its little hands.. or ignore it altogether. Thus, your internal representation of the fly creates an affordance, meaning you can respond to it in a flexible way.
+					</p>
+				</div>
+				
+				
+					
+				
+				<div class="step" data-step="5" style="opacity: 0">
+					<p>This is how I define perception in my work: an internal representation of a stimulus that creates an affordance.
+					</p>
+				</div>
+				
+				
+					
+				
+				<div class="step" data-step="6" style="opacity: 0">
+					<p>I will not try to define consciousness, but I will say it is a subjective concept that can only be assessed by asking about it: "Do you have consciousness?", "Are you conscious of the fly?", etc.
+					</p>
+				</div>
+				
+				
+					
+				
+				<div class="step" data-step="7" style="opacity: 0">
+					<p>In humans, consciousness and perception nearly always come together. You will say that you are conscious of a stimulus if and only if it creates an affordance.
+					</p>
+				</div>
+				
+				
+					
+				
+				<div class="step" data-step="8" style="opacity: 0">
+					<p>In mice, sadly, we don't know whether there is consciousness similar to that of humans. We can't ask them!
+					</p>
+				</div>
+				
+				
+					
+				
+				<div class="step" data-step="9" style="opacity: 0">
+					<p>But we can quantify their behavior in response to a stimulus, and check if it is consistent with the stimulus creating an affordance, i.e. the mice perceiving the stimulus.
+					</p>
+				</div>
+				
+				
+					
+				
+				<div class="step" data-step="10" style="opacity: 0">
+					<p>For example, one can train a mouse to report the vibration of a single whisker by licking a water port. 
+					</p>
+				</div>
+				
+				
+					
+				
+				<div class="step" data-step="11" style="opacity: 0">
+					<p>The affordance consists of the fact that the licking is flexible: sometimes it happens earlier, sometimes later, sometimes with more force, etc.
+					</p>
+				</div>
+				
+				
+					
+				
+				<div class="step" data-step="12" style="opacity: 0">
+					<p>But wait, why would we want to study mice?
+					</p>
+				</div>
+				
+				
+					
+				
+				<div class="step" data-step="13" style="opacity: 0">
+					<p>The reason is that in mice, unlike in humans, there are many tools available to identify and probe the neural circuits that underlie perception.
+					</p>
+				</div>
+				
+				
+					
+				
+				<div class="step" data-step="14" style="opacity: 0">
+					<p>Even so, these neural circuits remain poorly understood.
+					</p>
+				</div>
+				
+				
+					
+				
+				<div class="step" data-step="15" style="opacity: 0">
+					<p>I think a crucial reason for this is that we typically train mice to report stimuli in a specific way, so we canâ€™t distinguish perception-related activity from report-related activity.
+					</p>
+				</div>
+				
+				
+					
+				
+				<div class="step" data-step="16" style="opacity: 0">
+					<p>In my PhD project, I made a first crack at solving this problem by training mice to either lick or not lick after a whisker vibration, which allowed me to isolate perception-related activity.
+					</p>
+				</div>
+				
+				
+					
+				
+				<div class="step" data-step="17" style="opacity: 0">
+					<p>But many unknowns remain: How does this activity arise? What is its causal role? Is it the same across different sensory modalities? And others.
+					</p>
+				</div>
+				
+				
+					
+				
+				<div class="step" data-step="18" style="opacity: 0">
+					<p>No matter the next step, the key is to recognize that "perception" is not a dirty word. It's an incredibly important scientific problem that we can tackle.
+					</p>
+				</div>
+				
+			</article>
+
+			<! –– display image ––>
+			<figure>
+				<img id="image" src="../images/1.jpg">
+			</figure>
+
+
+		</section>
+
+	</main>
+
+	<!-- <div class='debug'></div> -->
+	<script src="https://unpkg.com/scrollama"></script>
+	<script src="https://unpkg.com/d3@5.9.1/dist/d3.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script>
+
+		// define variables
+		var img_dir = "../images/";
+		var main = d3.select("main");
+		var scrolly = main.select("#scrolly");
+		var figure = scrolly.select("figure");
+		var article = scrolly.select("article");
+		var steps = [{"image": "1.jpg", "text": "When some people hear I work on perception, they immediately think about consciousness, feeling, qualia, or other such thorny philosophical concepts."}, {"image": "2.jpg", "text": "But they are not the same. I\u0027ll explain.."}, {"image": "3.jpg", "text": "Say you happen to perceive a little fly on your arm.. "}, {"image": "4.jpg", "text": "You can swat at it.. or watch it rub its little hands.. or ignore it altogether. Thus, your internal representation of the fly creates an affordance, meaning you can respond to it in a flexible way."}, {"image": "5.jpg", "text": "This is how I define perception in my work: an internal representation of a stimulus that creates an affordance."}, {"image": "6.jpg", "text": "I will not try to define consciousness, but I will say it is a subjective concept that can only be assessed by asking about it: \"Do you have consciousness?\", \"Are you conscious of the fly?\", etc."}, {"image": "7.jpg", "text": "In humans, consciousness and perception nearly always come together. You will say that you are conscious of a stimulus if and only if it creates an affordance."}, {"image": "8.jpg", "text": "In mice, sadly, we don\u0027t know whether there is consciousness similar to that of humans. We can\u0027t ask them!"}, {"image": "9.jpg", "text": "But we can quantify their behavior in response to a stimulus, and check if it is consistent with the stimulus creating an affordance, i.e. the mice perceiving the stimulus."}, {"image": "10.jpg", "text": "For example, one can train a mouse to report the vibration of a single whisker by licking a water port. "}, {"image": "11.jpg", "text": "The affordance consists of the fact that the licking is flexible: sometimes it happens earlier, sometimes later, sometimes with more force, etc."}, {"image": "12.jpg", "text": "But wait, why would we want to study mice?"}, {"image": "13.jpg", "text": "The reason is that in mice, unlike in humans, there are many tools available to identify and probe the neural circuits that underlie perception."}, {"image": "14.jpg", "text": "Even so, these neural circuits remain poorly understood."}, {"image": "15.jpg", "text": "I think a crucial reason for this is that we typically train mice to report stimuli in a specific way, so we can\u05d2\u20ac\u2122t distinguish perception-related activity from report-related activity."}, {"image": "16.jpg", "text": "In my PhD project, I made a first crack at solving this problem by training mice to either lick or not lick after a whisker vibration, which allowed me to isolate perception-related activity."}, {"image": "17.jpg", "text": "But many unknowns remain: How does this activity arise? What is its causal role? Is it the same across different sensory modalities? And others."}, {"image": "18.jpg", "text": "No matter the next step, the key is to recognize that \"perception\" is not a dirty word. It\u0027s an incredibly important scientific problem that we can tackle."}];
+		var step = article.selectAll(".step");
+		
+		// initialize the scrollama
+		var scroller = scrollama();
+		var scroller2 = scrollama();
+
+		// current and previous indexes
+		var curr_index = 0;
+		var prev_index = 0;
+
+		// generic window resize listener event
+		function handleResize() {
+			// 1. update height of step elements
+			var stepH = Math.floor(window.innerHeight * 0.75);
+			step.style("height", stepH + "px");
+
+			var figureHeight = window.innerHeight / 2;
+			var figureMarginTop = (window.innerHeight - figureHeight) / 2;
+
+			figure
+				.style("height", figureHeight + "px")
+				.style("top", figureMarginTop + "px");
+
+			// 3. tell scrollama to update new element dimensions
+			scroller.resize();
+			scroller2.resize();
+		}
+
+		// scrollama event handlers
+		function handleStepEnter(response) {
+
+			// fetch current image index
+			curr_index = response.index
+
+			// stop current fade in, if ongoing
+			$("#image").stop(true, true);
+
+			// blank the image, so that the switch is not sudden
+			$("#image").fadeOut(0);
+
+			// switch the image
+			$("#image").on("load", function() {
+			// fade in the new image once it finishes loading
+				$("#image").fadeIn(750);
+    		}).attr("src", img_dir.concat(steps[curr_index]['image']));
+
+
+		}
+
+		// function to handle progressive opacity when scrolling
+		function handleStepProgress(response) {
+			response.element.style.opacity = 1.5*response.progress;
+		}
+
+		// function to setup the sticky figure
+		function setupStickyfill() {
+			d3.selectAll(".sticky").each(function () {
+				Stickyfill.add(this);
+			});
+		}
+
+		// initialization routine
+		function init() {
+			setupStickyfill();
+
+			// 1. force a resize on load to ensure proper dimensions are sent to scrollama
+			handleResize();
+
+			// 2. bind scrollama event handler
+			scroller
+				.setup({
+					step: "#scrolly article .step",
+					progress: true,
+					offset: 0.75,
+					debug: false
+				})
+				.onStepProgress(handleStepProgress);
+
+			scroller2
+				.setup({
+					step: "#scrolly article .step",
+					offset: 0.75,
+					debug: false
+				})
+				.onStepEnter(handleStepEnter)
+
+		}
+
+		// kick things off
+		init();
+
+		// reinitialize whenever the window is resized
+		window.onresize = function() {
+			init();
+		}
+
+
+	</script>
+
+
+</body>
+
+</html>
