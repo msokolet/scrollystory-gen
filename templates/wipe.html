@@ -190,21 +190,26 @@
 			curr_index = response.index
 
 			// slowly wipe the image	
+
+			// if current index is zero and progress is below 0.5, it means user is at the top of page - hide image	 (cover height is 100%)
 			if (response.progress < 0.5 && curr_index == 0) {
 				cover.style("height", '100%');
 			}
+			// if response progress is very high or low (between steps), keep step fully visible (cover height is 0%)
 			else if (response.progress > 0.8 || response.progress < 0.2) {
 				cover.style("height", '0%');
 			}		
+			// if response progress is between 0.6 and 0.8, gradually reveal image
 			else if (response.progress > 0.6 && response.progress < 0.8) {
 				cover.style("height", (100 - 5*(response.progress - 0.6)*100).toFixed(2) + '%');
 
 			}	
+			// if response progress is between 0.4 and 0.6, it means the user is between images - load the next one
 			else if (response.progress > 0.4 && response.progress < 0.6) {
 
 				cover.style("height", '100%');
 
-				// switch the next or previous image, depending on scroll direction
+				// load the below or above image, depending on scroll direction
 				if (response.direction == 'down') {
 					index_to_load = curr_index
 				}
@@ -214,9 +219,11 @@
 				$("#image").on("load", function() {
 				}).attr("src", img_dir.concat(steps[index_to_load]['image']));
 
+				// load the below or above step text, depending on scroll direction
 				text.innerText = steps[index_to_load]['text']
 
 			}
+			// if response progress is below 0.2, gradually hide image
 			else {
 				cover.style("height", (5*(response.progress-0.2)*100).toFixed(2) + '%');
 			}
