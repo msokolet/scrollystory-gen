@@ -18,4 +18,4 @@ Instructions:
 * In the repository folder, run **`python gen.py my_scrolly`**.
 * Your scrollystory will be outputted in **`my_scrolly/html`**.
 
-For simple examples of scrollystories based on each of the four templates (as well as their associated **`opts.json`** and images folder), see **`examples`**. For a full blown example of a scrollystory based on the side template, see **`examples/full`**.
+For simple examples of scrollystories based on each of the four templates (as well as their associated **`opts.json`** and images folder), see **`examples`**. For a full blown example of a scrollystory based on the side template, see **`examples/side-full`**.
