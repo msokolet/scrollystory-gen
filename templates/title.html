@@ -1,0 +1,246 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<! –– preload images so they immediately load in the scrollystory ––>
+	{% for step in steps %}
+		<link rel="preload" as="image" href="../images/{{step['image']}}" type="img/jpg" crossorigin="anonymous" />
+	{% endfor %}
+	
+	<! –– define metadata ––>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>{{page_title}}</title>
+	<meta name="description" content='{{page_desc}}' />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	
+	<style>
+
+		* { margin:0px; }
+
+		/* setup scrolly element */
+		#scrolly {
+			position: relative;
+			top: -40vh;
+			background-color: #ffffff;
+			padding: 1rem;
+		}
+
+		/* setup article which contains steps - this is the text on the left */
+		article {
+			position: relative;
+			padding: 0;
+			max-width: 40rem;
+			margin: 0 auto;
+		}
+
+		/* setup figure - this is the image on the right */
+		figure {
+			position: -webkit-sticky;
+			position: sticky;
+			display: flex;
+			align-items: center;
+			width: 100%;
+			-webkit-transform: translate3d(0, 0, 0);
+			-moz-transform: translate3d(0, 0, 0);
+			transform: translate3d(0, 0, 0);
+			background-color: #ffffff;
+			z-index: 0;
+		}
+
+		/* fit image within the flexbox */
+		img {
+			height: 80%;
+   			width: auto;
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		/* setup steps */
+		.step {
+			margin: 0 auto 2rem auto;
+			color: rgb(255, 255, 255);
+			background-color: rgba(0, 0, 0, 0.1);
+		}
+
+		.step:last-child {
+			margin-bottom: 0;
+		}
+
+		/* setup text inside step */
+		.step p {
+			text-align: center;
+			padding: 1rem;
+			font-size: 1.5rem;
+			background-color: #3b3b3b;
+		}
+
+		/* setup step activation */
+		.step.is-active p {
+			background-color: goldenrod;
+			color: #3b3b3b;
+			transition: 0.5s ease-in-out;
+		}
+
+
+	</style>
+</head>
+
+<body>
+	<main>
+
+		<section id="scrolly">
+
+			<! –– display image ––>
+			<figure>
+				<img id="image" src="../images/{{steps[0]['image']}}">
+			</figure>
+
+			<! –– import step texts from json file in a loop ––>
+			<article>
+				{% for step in steps %}
+				{% if loop.index == 1 %}
+				{% set opacity = 1 %}
+				{% else %}
+				{% set opacity = 0 %}
+				{% endif %}
+				<div class="step is-active" data-step="{{loop.index}}" style="opacity: {{opacity}}">
+					<p>{{step['text']}}
+					</p>
+				</div>
+				{% endfor %}
+			</article>
+
+		</section>
+
+	</main>
+
+	<!-- <div class='debug'></div> -->
+	<script src="https://unpkg.com/scrollama"></script>
+	<script src="https://unpkg.com/d3@5.9.1/dist/d3.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script>
+
+		// define variables
+		var img_dir = "../images/";
+		var main = d3.select("main");
+		var scrolly = main.select("#scrolly");
+		var figure = scrolly.select("figure");
+		var article = scrolly.select("article");
+		var steps = {{steps | tojson}};
+		var step = article.selectAll(".step");
+		
+		// initialize the scrollama
+		var scroller = scrollama();
+
+		// current and previous indexes
+		var curr_index = -1;
+
+		// generic window resize listener event
+		function handleResize() {
+			// 1. update height of step elements
+			var stepH = Math.floor(window.innerHeight * 0.75);
+			step.style("height", stepH + "px");
+
+			var figureHeight = window.innerHeight / 2;
+			var figureMarginTop = (window.innerHeight - figureHeight) / 2;
+
+			figure
+				.style("height", figureHeight + "px")
+				.style("top", figureMarginTop + "px");
+
+			// 2. tell scrollama to update new element dimensions
+			scroller.resize();
+		}
+
+		// scrollama event handler
+
+		function handleStepProgress(response) {
+
+			// load currentimage on init
+
+			if (curr_index == -1) {
+				$("#image").on("load", function() {
+					}).attr("src", img_dir.concat(steps[response.index]['image']));
+			}
+
+			// fetch current image index
+			curr_index = response.index
+
+			response.element.style.opacity = response.progress;
+
+			if (response.progress > 0.75) {
+
+				// activate the current step
+				step.classed("is-active", function (d, i) {
+					return i === curr_index;
+				});
+
+				// switch the image
+				$("#image").on("load", function() {
+				// fade in the new image once it finishes loading
+					$("#image").fadeIn(750);
+				}).attr("src", img_dir.concat(steps[curr_index]['image']));
+				
+
+			}	
+			else {
+
+				// deactivate the current step
+				step.classed("is-active", function (d, i) {
+					return i === -1;
+				});
+
+				// stop current fade in, if ongoing
+				$("#image").stop(true, true);
+
+				// blank the image, so that the switch is not sudden
+				$("#image").fadeOut(0);
+
+			}
+
+		}
+
+
+		// function to setup the sticky figure
+		function setupStickyfill() {
+			d3.selectAll(".sticky").each(function () {
+				Stickyfill.add(this);
+			});
+		}
+
+		// initialization routine
+		function init() {
+			setupStickyfill();
+
+			// 1. force a resize on load to ensure proper dimensions are sent to scrollama
+			handleResize();
+
+			// 2. bind scrollama event handler
+			scroller
+				.setup({
+					step: "#scrolly article .step",
+					progress: true,
+					offset: 0.75,
+					debug: false
+				})
+				.onStepProgress(handleStepProgress)
+		}
+
+		// kick things off
+		init();
+
+		// reinitialize whenever the window is resized
+		window.onresize = function() {
+			init();
+		}
+
+
+	</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+{
+  "page_name": "example",
+  "page_title": "Example",
+  "page_desc": "An example of three steps",
+  "template": "wipe",
+  "steps": [
+      {"text": "This is an example text for the first step", "image": "step_1.jpg"},
+      {"text": "This is an example text for the second step", "image": "step_2.jpg"},    
+      {"text": "This is an example text for the third step", "image": "step_3.jpg"}
+  ]  
+}
+

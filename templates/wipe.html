@@ -1,0 +1,264 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<! –– preload images so they immediately load in the scrollystory ––>
+	{% for step in steps %}
+		<link rel="preload" as="image" href="../images/{{step['image']}}" type="img/jpg" crossorigin="anonymous" />
+	{% endfor %}
+	
+	<! –– define metadata ––>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>{{page_title}}</title>
+	<meta name="description" content='{{page_desc}}' />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	
+	<style>
+
+		* { margin:0px; }
+
+		/* setup scrolly element */
+		#scrolly {
+			position: relative;
+			top: -40vh;
+			background-color: #ffffff;
+			padding: 1rem;
+		}
+
+		/* setup article which contains steps - this is the text on the left */
+		article {
+			position: relative;
+			padding: 0;
+			max-width: 40rem;
+			margin: 0 auto;
+		}
+
+		/* setup figure - this is the image on the right */
+		figure {
+			position: -webkit-sticky;
+			position: sticky;
+			display: flex;
+			align-items: center;
+			margin-left: 10%;
+			width: auto;
+			-webkit-transform: translate3d(0, 0, 0);
+			-moz-transform: translate3d(0, 0, 0);
+			transform: translate3d(0, 0, 0);
+			background-color: #ffffff;
+			z-index: 0;
+		}
+
+		/* fit image within the flexbox */
+		img {
+			width: auto;
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			height: 100%;
+			z-index: 1;
+		}
+
+		/* fit text inside step */
+		figure p {
+			color: rgb(0, 0, 0);
+			font-size: 3.5vmin;
+			text-align: center;
+			padding: 0;
+			position: relative;
+			margin-left: auto;
+			margin-right: auto;
+			z-index: 2;
+		}
+
+		/* partially cover the image according to scroll */
+		.cover {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: #ffffff;
+			z-index: 100;
+		}
+
+		/* setup steps */
+		.step {
+			margin: 0 auto 2rem auto;
+			padding: 20rem 0;
+			color: rgb(255, 255, 255);
+		}
+
+		.step:last-child {
+			margin-bottom: 0;
+		}
+
+		/* setup text inside step */
+		.step p {
+			text-align: center;
+			padding: 1rem;
+			font-size: 1.5rem;
+			background-color: #3b3b3b;
+		}
+
+	</style>
+</head>
+
+<body>
+	<main>
+
+		<section id="scrolly">
+
+			<! –– display image and text ––>
+			<figure>
+				<p id='text'>{{steps[0]['text']}}
+				</p>
+				<img id="image" src="../images/{{steps[0]['image']}}">
+				<div class="cover"></div>
+			</figure>
+
+			<! –– setup steps as empty containers ––>
+			<article>
+				{% for step in steps %}
+				<div class="step" data-step="{{loop.index}}">
+				</div>
+				{% endfor %}
+			</article>
+
+		</section>
+
+	</main>
+
+	<!-- <div class='debug'></div> -->
+	<script src="https://unpkg.com/scrollama"></script>
+	<script src="https://unpkg.com/d3@5.9.1/dist/d3.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script>
+
+		// define variables
+		var img_dir = "../images/";
+		var main = d3.select("main");
+		var scrolly = main.select("#scrolly");
+		var figure = scrolly.select("figure");
+		var text = document.getElementById('text');
+		var cover = figure.select(".cover");
+		var article = scrolly.select("article");
+		var steps = {{steps | tojson}};
+		var step = article.selectAll(".step");
+		var image = document.getElementById('image');
+
+		// initialize the scrollama
+		var scroller = scrollama();
+		var scroller2 = scrollama();
+
+		// current and previous indexes
+		var curr_index = 0;
+		var prev_index = 0;
+
+		// generic window resize listener event
+		function handleResize() {
+			// 1. update height of step elements
+			var stepH = Math.floor(window.innerHeight * 0.75);
+			step.style("height", stepH + "px");
+
+			var figureHeight = window.innerHeight / 2;
+			var figureMarginTop = (window.innerHeight - figureHeight) / 2;
+
+			figure
+				.style("height", figureHeight + "px")
+				.style("top", figureMarginTop + "px");
+
+			// 2. tell scrollama to update new element dimensions
+			scroller.resize();
+		}
+
+		// scrollama event handler
+
+		function handleStepProgress(response) {
+			
+			// load image on init
+
+			if (curr_index == -1) {
+				$("#image").on("load", function() {
+					}).attr("src", img_dir.concat(steps[response.index]['image']));
+				text.innerText = steps[response.index]['text']
+			}
+
+			// fetch current image index
+			curr_index = response.index
+
+			// slowly wipe the image	
+			if (response.progress < 0.5 && curr_index == 0) {
+				cover.style("height", '100%');
+			}
+			else if (response.progress > 0.8 || response.progress < 0.2) {
+				cover.style("height", '0%');
+			}		
+			else if (response.progress > 0.6 && response.progress < 0.8) {
+				cover.style("height", (100 - 5*(response.progress - 0.6)*100).toFixed(2) + '%');
+
+			}	
+			else if (response.progress > 0.4 && response.progress < 0.6) {
+
+				cover.style("height", '100%');
+
+				// switch the next or previous image, depending on scroll direction
+				if (response.direction == 'down') {
+					index_to_load = curr_index
+				}
+				else {
+					index_to_load = curr_index - 1
+				}
+				$("#image").on("load", function() {
+				}).attr("src", img_dir.concat(steps[index_to_load]['image']));
+
+				text.innerText = steps[index_to_load]['text']
+
+			}
+			else {
+				cover.style("height", (5*(response.progress-0.2)*100).toFixed(2) + '%');
+			}
+
+		}
+
+		// function to setup the sticky figure
+		function setupStickyfill() {
+			d3.selectAll(".sticky").each(function () {
+				Stickyfill.add(this);
+			});
+		}
+
+		// initialization routine
+		function init() {
+			setupStickyfill();
+			// 1. force a resize on load to ensure proper dimensions are sent to scrollama
+			handleResize();
+
+			// 2. bind scrollama event handler
+			scroller
+				.setup({
+					step: "#scrolly article .step",
+					progress: true,
+					offset: 0.75,
+					debug: false
+				})
+				.onStepProgress(handleStepProgress);
+		}
+
+		// kick things off
+		init();
+
+		// reinitialize whenever the window is resized
+		window.onresize = function() {
+			init();
+		}
+
+
+	</script>
+
+
+</body>
+
+</html>

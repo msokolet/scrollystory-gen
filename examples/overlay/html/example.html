@@ -3,13 +3,22 @@
 <html>
 
 <head>
-
+	<! –– preload images so they immediately load in the scrollystory ––>
+	
+		<link rel="preload" as="image" href="../images/step_1.jpg" type="img/jpg" crossorigin="anonymous" />
+	
+		<link rel="preload" as="image" href="../images/step_2.jpg" type="img/jpg" crossorigin="anonymous" />
+	
+		<link rel="preload" as="image" href="../images/step_3.jpg" type="img/jpg" crossorigin="anonymous" />
+	
+	
 	<! –– define metadata ––>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<title>Example</title>
 	<meta name="description" content='An example of three steps' />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	
 	<style>
 
 		* { margin:0px; }
@@ -17,64 +26,55 @@
 		/* setup scrolly element */
 		#scrolly {
 			position: relative;
-			display: -webkit-box;
-			display: -ms-flexbox;
-			display: flex;
 			background-color: #ffffff;
 			padding: 1rem;
 		}
 
-		#scrolly>* {
-			-webkit-box-flex: 1;
-			-ms-flex: 1;
-			flex: 1;
-		}
-
-		/* setup article which contains steps - this is the text on the left */
+		/* setup article which contains steps */
 		article {
 			position: relative;
-			padding: 0 5rem;
-			max-width: 30rem;
-		}
-
-		/* setup figure - this is the image on the right */
-		figure {
-			position: -webkit-sticky;
-			position: sticky;
-			display: flex;
+			display: block;
 			align-items: center;
-			margin: 0;
-			-webkit-transform: translate3d(0, 0, 0);
-			-moz-transform: translate3d(0, 0, 0);
-			transform: translate3d(0, 0, 0);
-			background-color: hsl(0, 0%, 100%);
-			z-index: 0;
+			padding: 0;
+			margin-left: auto;
+			margin-right: auto;
 		}
 
-		/* fit image within the flexbox */
+		/* fit image within the step */
 		img {
-			height: auto;
-   			width: 90%;
+			height: 100%;
+			width: auto;
+			margin-left: auto;
+			margin-right: auto;
+			display: block;
 		}
 
 		/* setup steps */
 		.step {
-			margin: 0 auto 2rem auto;
-			background-color: #ffffff;
-			color: rgb(0, 0, 0)
+			color: rgb(255, 255, 255);
+			padding: 10rem 0;
+			font-size: 3.5vmin;
+
 		}
 
 		.step:last-child {
 			margin-bottom: 0;
 		}
 
-		/* setup text inside step */
+
+		/* fit text inside step */
 		.step p {
+			color: rgb(0, 0, 0);
+			display: block;
 			text-align: center;
-			padding: 1rem;
-			font-size: 2vw;
-			font-family: Helvetica, sans-serif;
+			padding: 0;
+			position: relative;
+			top: -50%;
+			margin-left: auto;
+			margin-right: auto;
 		}
+
+
 	</style>
 </head>
 
@@ -86,37 +86,40 @@
 			<! –– import step texts from json file in a loop ––>
 			<article>
 				
-					
-						
-					
-					<div class="step" data-step=1 style="opacity: 1">
-						<p>This is an example text for the first step
-						</p>
-					</div>
 				
-					
-						
-					
-					<div class="step" data-step=2 style="opacity: 0">
-						<p>This is an example text for the second step
-						</p>
-					</div>
 				
-					
-						
-					
-					<div class="step" data-step=3 style="opacity: 0">
-						<p>This is an example text for the third step
-						</p>
-					</div>
+				
+				<div class="step" data-step="1" style="opacity: 1">
+					<! –– display image ––>
+					<img id="image" src="../images/step_1.jpg">
+					<! –– display text ––>
+					<p>This is an example text for the first step
+					</p>
+				</div>
+				
+				
+				
+				
+				<div class="step" data-step="2" style="opacity: 0">
+					<! –– display image ––>
+					<img id="image" src="../images/step_2.jpg">
+					<! –– display text ––>
+					<p>This is an example text for the second step
+					</p>
+				</div>
+				
+				
+				
+				
+				<div class="step" data-step="3" style="opacity: 0">
+					<! –– display image ––>
+					<img id="image" src="../images/step_3.jpg">
+					<! –– display text ––>
+					<p>This is an example text for the third step
+					</p>
+				</div>
 				
 			</article>
-
-			<! –– display image ––>
-			<figure>
-				<img id="image" src="../images/step_1.jpg">
-			</figure>
-
 
 		</section>
 
@@ -125,7 +128,7 @@
 	<!-- <div class='debug'></div> -->
 	<script src="https://unpkg.com/scrollama"></script>
 	<script src="https://unpkg.com/d3@5.9.1/dist/d3.min.js"></script>
-	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script>
 
 		// define variables
@@ -139,11 +142,9 @@
 		
 		// initialize the scrollama
 		var scroller = scrollama();
-		var scroller2 = scrollama();
 
 		// current and previous indexes
 		var curr_index = 0;
-		var prev_index = 0;
 
 		// generic window resize listener event
 		function handleResize() {
@@ -160,39 +161,15 @@
 
 			// 3. tell scrollama to update new element dimensions
 			scroller.resize();
-			scroller2.resize();
 		}
 
-		// scrollama event handlers
-		function handleStepEnter(response) {
-			// response = { element, direction, index }
+		// scrollama event handler
 
-			// add color to current step only
-			// step.classed("is-active", function (d, i) {
-			// 	return i === response.index;
-			// });
-
-			// update graphic based on step
-			// figure.select("p").text(response.index + 1)
-
-			curr_index = response.index
-
-			if (curr_index != prev_index) {
-				$("#image").stop(true, true);
-				$("#image").fadeOut(0);
-
-				figure.select("img").attr('src',img_dir.concat(steps[curr_index]['image']));
-
-				$("#image").fadeIn(750);
-			}
-
-			prev_index = response.index
-
-		}
-
-		// function to handle progressive opacity when scrolling
 		function handleStepProgress(response) {
-			response.element.style.opacity = 1.5*response.progress;
+
+			// set step opacity
+			response.element.style.opacity = response.progress;
+
 		}
 
 		// function to setup the sticky figure
@@ -218,14 +195,6 @@
 					debug: false
 				})
 				.onStepProgress(handleStepProgress);
-
-			scroller2
-				.setup({
-					step: "#scrolly article .step",
-					offset: 0.75,
-					debug: false
-				})
-				.onStepEnter(handleStepEnter)
 
 		}
 

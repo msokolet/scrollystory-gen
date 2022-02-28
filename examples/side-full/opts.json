@@ -2,7 +2,7 @@
   "page_name": "perception-is-not-a-dirty-word",
   "page_title": "\"Perception\" is not a dirty word",
   "page_desc": "Blog post 1",
-  "template": "sticky_template",
+  "template": "side",
   "steps": [
       {"text": "When some people hear I work on perception, they immediately think about consciousness, feeling, qualia, or other such thorny philosophical concepts.", "image": "1.jpg"},
       {"text": "But they are not the same. I'll explain..", "image": "2.jpg"},    

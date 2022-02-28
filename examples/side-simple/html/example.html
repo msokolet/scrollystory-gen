@@ -3,16 +3,20 @@
 <html>
 
 <head>
-	<! â€“â€“ preload images so they immediately load in the scrollystory â€“â€“>
-	{% for step in steps %}
-		<link rel="preload" as="image" href="../images/{{step['image']}}" type="img/jpg" crossorigin="anonymous" />
-	{% endfor %}
+	<! –– preload images so they immediately load in the scrollystory ––>
 	
-	<! â€“â€“ define metadata â€“â€“>
+		<link rel="preload" as="image" href="../images/step_1.jpg" type="img/jpg" crossorigin="anonymous" />
+	
+		<link rel="preload" as="image" href="../images/step_2.jpg" type="img/jpg" crossorigin="anonymous" />
+	
+		<link rel="preload" as="image" href="../images/step_3.jpg" type="img/jpg" crossorigin="anonymous" />
+	
+	
+	<! –– define metadata ––>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<title>{{page_title}}</title>
-	<meta name="description" content='{{page_desc}}' />
+	<title>Example</title>
+	<meta name="description" content='An example of three steps' />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	
 	<style>
@@ -64,7 +68,7 @@
 
 		/* setup steps */
 		.step {
-			margin: 0 auto 2rem auto;
+			margin: 50% auto 2rem auto;
 			background-color: #ffffff;
 			color: rgb(0, 0, 0)
 		}
@@ -88,24 +92,38 @@
 
 		<section id="scrolly">
 
-			<! â€“â€“ import step texts from json file in a loop â€“â€“>
+			<! –– import step texts from json file in a loop ––>
 			<article>
-				{% for step in steps %}
-				{% if loop.index == 1 %}
-					{% set opacity = 1 %}
-				{% else %}
-					{% set opacity = 0 %}
-				{% endif %}
-				<div class="step" data-step="{{loop.index}}" style="opacity: {{opacity}}">
-					<p>{{step['text']}}
+				
+				
+					
+				
+				<div class="step" data-step="1" style="opacity: 1">
+					<p>This is an example text for the first step
 					</p>
 				</div>
-				{% endfor %}
+				
+				
+					
+				
+				<div class="step" data-step="2" style="opacity: 0">
+					<p>This is an example text for the second step
+					</p>
+				</div>
+				
+				
+					
+				
+				<div class="step" data-step="3" style="opacity: 0">
+					<p>This is an example text for the third step
+					</p>
+				</div>
+				
 			</article>
 
-			<! â€“â€“ display image â€“â€“>
+			<! –– display image ––>
 			<figure>
-				<img id="image" src="../images/{{steps[0]['image']}}">
+				<img id="image" src="../images/step_1.jpg">
 			</figure>
 
 
@@ -125,7 +143,7 @@
 		var scrolly = main.select("#scrolly");
 		var figure = scrolly.select("figure");
 		var article = scrolly.select("article");
-		var steps = {{steps | tojson}};
+		var steps = [{"image": "step_1.jpg", "text": "This is an example text for the first step"}, {"image": "step_2.jpg", "text": "This is an example text for the second step"}, {"image": "step_3.jpg", "text": "This is an example text for the third step"}];
 		var step = article.selectAll(".step");
 		
 		// initialize the scrollama
@@ -149,7 +167,7 @@
 				.style("height", figureHeight + "px")
 				.style("top", figureMarginTop + "px");
 
-			// 3. tell scrollama to update new element dimensions
+			// 2. tell scrollama to update new element dimensions
 			scroller.resize();
 			scroller2.resize();
 		}
